@@ -9,6 +9,11 @@ import android.widget.Toast;
 
 /**
  * Created by Zolboo Erdenebaatar 11/19/2018
+ * This is the class for the browser displayed on the
+ * screen once login or signup is clicked.
+ *
+ * Currently uses WebView Class but there
+ * might be something else better 
  *
  */
 public class Browser extends AppCompatActivity {
@@ -31,8 +36,8 @@ public class Browser extends AppCompatActivity {
 
             public void onReceivedError(WebView view, int errorCode, String description, String failingUrl) {
 
-                Intent intent= new Intent(getApplicationContext(), MainActivity.class);
-                startActivity(intent);
+                //Intent intent= new Intent(getApplicationContext(), MainActivity.class);
+                //startActivity(intent);
                 Toast.makeText(getApplicationContext(), "No Internet Connection. Try Again Later", Toast.LENGTH_SHORT).show();
             }
         });
