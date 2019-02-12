@@ -2,5 +2,11 @@
     <string name="app_name">Mixxer</string>
     <string name="logIn">Log In</string>
     <string name="signUp">Sign Up</string>
+    <string name="site_logo">Site logo</string>
+    <string name="welcome">Welcome</string>
+    <string name="welcome_to_the_mixxer">Welcome to the Mixxer!</string>
+    <string name="site_header">Site header</string>
+    <string name="connect_with_learners">Connect with learners</string>
+    <string name="connect_with_language_learners_around_the_world_and_find_a_language_partner_today">Connect with language learners around the world and find a language partner today!</string>
 </resources>
 
