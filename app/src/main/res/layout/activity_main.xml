@@ -4,90 +4,62 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/mixxerBlue"
+    android:background="@color/white"
     tools:context=".MainActivity"
     tools:layout_editor_absoluteY="25dp">
 
     <Button
         android:id="@+id/logIn"
-        android:layout_width="280dp"
+        android:layout_width="300dp"
         android:layout_height="40dp"
-        android:layout_marginBottom="20dp"
+        android:layout_marginBottom="12dp"
         android:background="@drawable/rounded_button"
         android:text="@string/logIn"
         android:textAllCaps="true"
-        android:textColor="@color/colorPrimaryDark"
+        android:textColor="@color/white"
         android:textSize="20sp"
         android:textStyle="bold"
         android:typeface="sans"
         app:layout_constraintBottom_toTopOf="@+id/signUp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.503"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/signUp"
-        android:layout_width="280dp"
+        android:layout_width="300dp"
         android:layout_height="40dp"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="30dp"
         android:background="@drawable/rounded_button"
         android:text="@string/signUp"
-        android:textColor="@color/colorPrimaryDark"
+        android:textColor="@color/white"
         android:textSize="20sp"
         android:textStyle="bold"
         android:typeface="sans"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.504"
         app:layout_constraintStart_toStartOf="parent" />
-
-    <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="115dp"
-        android:layout_height="49dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="21dp"
-        android:layout_marginEnd="8dp"
-        android:contentDescription="@string/site_logo"
-        app:layout_constraintBottom_toTopOf="@+id/textView2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView"
-        app:layout_constraintVertical_chainStyle="spread"
-        app:srcCompat="@drawable/header_icon_1" />
 
     <TextView
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="46dp"
-        android:layout_marginTop="11dp"
-        android:layout_marginEnd="52dp"
+        android:layout_marginStart="38dp"
+        android:layout_marginEnd="38dp"
+        android:layout_marginBottom="8dp"
         android:contentDescription="@string/welcome"
         android:text="@string/welcome_to_the_mixxer"
         android:textAlignment="center"
         android:textColor="@color/colorPrimary"
-        android:textSize="30sp"
+        android:textSize="32sp"
         android:typeface="sans"
         app:layout_constraintBottom_toTopOf="@+id/textView4"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView2"
         tools:fontFamily="@font/roboto" />
-
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="900dp"
-        android:layout_height="262dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginBottom="37dp"
-        android:contentDescription="@string/site_header"
-        app:layout_constraintBottom_toTopOf="@+id/imageView2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.02"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/header_image" />
 
     <TextView
         android:id="@+id/textView4"
@@ -95,7 +67,7 @@
         android:layout_height="70dp"
         android:layout_marginStart="68dp"
         android:layout_marginEnd="70dp"
-        android:layout_marginBottom="34dp"
+        android:layout_marginBottom="18dp"
         android:contentDescription="@string/connect_with_learners"
         android:fontFamily="@font/roboto"
         android:text="@string/connect_with_language_learners_around_the_world_and_find_a_language_partner_today"
@@ -106,7 +78,41 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.538"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView2"
         tools:text="Connect with language learners around the world and find a language partner today!" />
+
+    <ImageView
+        android:id="@+id/imageView5"
+        android:layout_width="413dp"
+        android:layout_height="307dp"
+        android:contentDescription="@string/italian_german"
+        app:layout_constraintBottom_toTopOf="@+id/logo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/italian_german" />
+
+    <ImageView
+        android:id="@+id/logo"
+        android:layout_width="115dp"
+        android:layout_height="70dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:contentDescription="@string/site_logo"
+        app:layout_constraintBottom_toTopOf="@+id/textView2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/logo" />
+
+    <ImageView
+        android:id="@+id/speakAndLearn"
+        android:layout_width="339dp"
+        android:layout_height="333dp"
+        android:layout_marginStart="2dp"
+        android:layout_marginEnd="21dp"
+        android:layout_marginBottom="54dp"
+        android:contentDescription="@string/speak_and_learn"
+        app:layout_constraintBottom_toBottomOf="@+id/logo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/speak_and_learn_larger" />
 
 </android.support.constraint.ConstraintLayout>

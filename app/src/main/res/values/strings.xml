@@ -8,5 +8,9 @@
     <string name="site_header">Site header</string>
     <string name="connect_with_learners">Connect with learners</string>
     <string name="connect_with_language_learners_around_the_world_and_find_a_language_partner_today">Connect with language learners around the world and find a language partner today!</string>
+    <string name="main_image">main image</string>
+    <string name="login_screen_picture">Login screen picture</string>
+    <string name="speak_and_learn">speak and learn</string>
+    <string name="italian_german">italian german</string>
 </resources>
 
