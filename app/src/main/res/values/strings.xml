@@ -12,5 +12,9 @@
     <string name="login_screen_picture">Login screen picture</string>
     <string name="speak_and_learn">speak and learn</string>
     <string name="italian_german">italian german</string>
+    <string name="no_matter">No matter what language you speak, find a partner here!</string>
+    <string name="sticky_notes">sticky notes</string>
+    <string name="the_mixxer">The Mixxer</string>
+    <string name="welcome_login">Welcome!</string>
 </resources>
 
