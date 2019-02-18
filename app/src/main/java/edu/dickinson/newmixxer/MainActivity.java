@@ -57,14 +57,14 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        ImageView img = (ImageView)findViewById(R.id.stickyNotes);
+        ImageView img = findViewById(R.id.stickyNotes);
         img.setBackgroundResource(R.drawable.sticky_note_animation);
         AnimationDrawable stickyNotesAnimation = (AnimationDrawable) img.getBackground();
 
         stickyNotesAnimation.start();
 
-        signUp = (Button) findViewById(R.id.signUp);//register the buttons
-        logIn = (Button) findViewById(R.id.logIn);
+        signUp = findViewById(R.id.signUp);//register the buttons
+        logIn = findViewById(R.id.logIn);
 //            signUp.setOnClickListener(new View.OnClickListener() {
 //                @Override
 //                public void onClick(View view) {
@@ -121,6 +121,7 @@ public class MainActivity extends AppCompatActivity {
         CustomTabsIntent.Builder builder = new CustomTabsIntent.Builder();
         builder.setToolbarColor(Color.parseColor("#263038"));
         CustomTabsIntent customTabsIntent = builder.build();
+        customTabsIntent.intent.setPackage(CUSTOM_TAB_PACKAGE_NAME);
         customTabsIntent.launchUrl(this, Uri.parse(url));
     }
 
@@ -128,6 +129,7 @@ public class MainActivity extends AppCompatActivity {
         String url = "https://www.language-exchanges.org/user/register";
         CustomTabsIntent.Builder builder = new CustomTabsIntent.Builder();
         CustomTabsIntent customTabsIntent = builder.build();
+        customTabsIntent.intent.setPackage(CUSTOM_TAB_PACKAGE_NAME);
         customTabsIntent.launchUrl(this, Uri.parse(url));
     }
 }
