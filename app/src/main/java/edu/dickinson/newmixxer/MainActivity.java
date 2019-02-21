@@ -119,7 +119,9 @@ public class MainActivity extends AppCompatActivity {
     public void launchLogIn(View view){
         String url = "https://www.language-exchanges.org/user/login";
         CustomTabsIntent.Builder builder = new CustomTabsIntent.Builder();
-        builder.setToolbarColor(Color.parseColor("#263038"));
+        builder.setToolbarColor(getResources().getColor(R.color.colorPrimary));
+        builder.setShowTitle(true);
+        //builder.setToolbarColor(Color.parseColor("#263038"));
         CustomTabsIntent customTabsIntent = builder.build();
         customTabsIntent.intent.setPackage(CUSTOM_TAB_PACKAGE_NAME);
         customTabsIntent.launchUrl(this, Uri.parse(url));
@@ -128,6 +130,8 @@ public class MainActivity extends AppCompatActivity {
     public void launchSignup(View view){
         String url = "https://www.language-exchanges.org/user/register";
         CustomTabsIntent.Builder builder = new CustomTabsIntent.Builder();
+        builder.setToolbarColor(getResources().getColor(R.color.colorPrimary));
+        builder.setShowTitle(true);
         CustomTabsIntent customTabsIntent = builder.build();
         customTabsIntent.intent.setPackage(CUSTOM_TAB_PACKAGE_NAME);
         customTabsIntent.launchUrl(this, Uri.parse(url));
