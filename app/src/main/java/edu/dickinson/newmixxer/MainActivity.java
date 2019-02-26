@@ -4,6 +4,7 @@ import android.app.ProgressDialog;
 import android.content.ComponentName;
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.drawable.AnimationDrawable;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.support.customtabs.CustomTabsClient;
@@ -15,6 +16,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import org.json.JSONArray;
@@ -40,19 +42,29 @@ import java.util.List;
  *
  */
 public class MainActivity extends AppCompatActivity {
+    AnimationDrawable stickyNotesAnimation;
+
     ProgressDialog pd; //opening up this Activity might take a while. So this is a dialog that spins while the app is loading
     Button signUp; //sign up Button, same as logIn
     Button logIn;
     public static final String CUSTOM_TAB_PACKAGE_NAME = "com.android.chrome";
     public static CustomTabsClient mCustomTabsClient;
     public static CustomTabsSession mCustomTabsSession;
+
     //public static String joReturn;    //was useful when we used the method "yourDataTask". No longer useful
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        signUp = (Button) findViewById(R.id.signUp);//register the buttons
-        logIn = (Button) findViewById(R.id.logIn);
+
+        ImageView img = findViewById(R.id.stickyNotes);
+        img.setBackgroundResource(R.drawable.sticky_note_animation);
+        AnimationDrawable stickyNotesAnimation = (AnimationDrawable) img.getBackground();
+
+        stickyNotesAnimation.start();
+
+        signUp = findViewById(R.id.signUp);//register the buttons
+        logIn = findViewById(R.id.logIn);
 //            signUp.setOnClickListener(new View.OnClickListener() {
 //                @Override
 //                public void onClick(View view) {
@@ -97,17 +109,31 @@ public class MainActivity extends AppCompatActivity {
         };
         boolean ok = CustomTabsClient.bindCustomTabsService(this, CUSTOM_TAB_PACKAGE_NAME, connection);
     }
+
+    /*@Override
+    public void onWindowFocusChanged(boolean hasFocus) {
+        super.onWindowFocusChanged(hasFocus);
+        stickyNotesAnimation.start();
+    }*/
+
     public void launchLogIn(View view){
         String url = "http://mixxertestdev.dickinson.edu/user/login";
         CustomTabsIntent.Builder builder = new CustomTabsIntent.Builder();
-        builder.setToolbarColor(Color.parseColor("#263038"));
+        builder.setToolbarColor(getResources().getColor(R.color.colorPrimary));
+        builder.setShowTitle(true);
+        //builder.setToolbarColor(Color.parseColor("#263038"));
         CustomTabsIntent customTabsIntent = builder.build();
+        customTabsIntent.intent.setPackage(CUSTOM_TAB_PACKAGE_NAME);
         customTabsIntent.launchUrl(this, Uri.parse(url));
     }
+
     public void launchSignup(View view){
         String url = "https://www.language-exchanges.org/user/register";
         CustomTabsIntent.Builder builder = new CustomTabsIntent.Builder();
+        builder.setToolbarColor(getResources().getColor(R.color.colorPrimary));
+        builder.setShowTitle(true);
         CustomTabsIntent customTabsIntent = builder.build();
+        customTabsIntent.intent.setPackage(CUSTOM_TAB_PACKAGE_NAME);
         customTabsIntent.launchUrl(this, Uri.parse(url));
     }
 }
