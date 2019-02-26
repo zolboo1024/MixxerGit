@@ -98,7 +98,7 @@ public class MainActivity extends AppCompatActivity {
         boolean ok = CustomTabsClient.bindCustomTabsService(this, CUSTOM_TAB_PACKAGE_NAME, connection);
     }
     public void launchLogIn(View view){
-        String url = "https://www.language-exchanges.org/user/login";
+        String url = "http://mixxertestdev.dickinson.edu/user/login";
         CustomTabsIntent.Builder builder = new CustomTabsIntent.Builder();
         builder.setToolbarColor(Color.parseColor("#263038"));
         CustomTabsIntent customTabsIntent = builder.build();
