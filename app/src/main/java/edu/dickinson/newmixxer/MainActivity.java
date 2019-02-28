@@ -1,8 +1,11 @@
 package edu.dickinson.newmixxer;
 
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.ComponentName;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.graphics.drawable.AnimationDrawable;
 import android.net.Uri;
@@ -47,6 +50,7 @@ public class MainActivity extends AppCompatActivity {
     ProgressDialog pd; //opening up this Activity might take a while. So this is a dialog that spins while the app is loading
     Button signUp; //sign up Button, same as logIn
     Button logIn;
+    PackageManager pm;
     public static final String CUSTOM_TAB_PACKAGE_NAME = "com.android.chrome";
     public static CustomTabsClient mCustomTabsClient;
     public static CustomTabsSession mCustomTabsSession;
@@ -60,7 +64,7 @@ public class MainActivity extends AppCompatActivity {
         ImageView img = findViewById(R.id.stickyNotes);
         img.setBackgroundResource(R.drawable.sticky_note_animation);
         AnimationDrawable stickyNotesAnimation = (AnimationDrawable) img.getBackground();
-
+        pm= getPackageManager();
         stickyNotesAnimation.start();
 
         signUp = findViewById(R.id.signUp);//register the buttons
@@ -118,23 +122,68 @@ public class MainActivity extends AppCompatActivity {
 
     public void launchLogIn(View view){
         String url = "http://mixxertestdev.dickinson.edu/user/login";
-        CustomTabsIntent.Builder builder = new CustomTabsIntent.Builder();
-        builder.setToolbarColor(getResources().getColor(R.color.colorPrimary));
-        builder.setShowTitle(true);
-        //builder.setToolbarColor(Color.parseColor("#263038"));
-        CustomTabsIntent customTabsIntent = builder.build();
-        customTabsIntent.intent.setPackage(CUSTOM_TAB_PACKAGE_NAME);
-        customTabsIntent.launchUrl(this, Uri.parse(url));
+        launchURL(url);
     }
 
     public void launchSignup(View view){
         String url = "https://www.language-exchanges.org/user/register";
+        launchURL(url);
+    }
+
+    public void launchURL(String url){
+        if(!isPackageInstalled("com.skype.raider", pm)){
+            showChoice(url);
+            Log.d("SHOWCHOICE", "SHOWCHOICE");
+        }
+        else {
+            launchURLFinal(url);
+        }
+    }
+    public void launchURLFinal(String url){
         CustomTabsIntent.Builder builder = new CustomTabsIntent.Builder();
         builder.setToolbarColor(getResources().getColor(R.color.colorPrimary));
-        builder.setShowTitle(true);
+        //builder.setShowTitle(true);
+        builder.setToolbarColor(Color.parseColor("#263038"));
         CustomTabsIntent customTabsIntent = builder.build();
         customTabsIntent.intent.setPackage(CUSTOM_TAB_PACKAGE_NAME);
         customTabsIntent.launchUrl(this, Uri.parse(url));
+    }
+    private boolean isPackageInstalled(String packageName, PackageManager packageManager) {
+
+        boolean found = true;
+
+        try {
+
+            packageManager.getPackageInfo(packageName, 0);
+        } catch (PackageManager.NameNotFoundException e) {
+
+            found = false;
+        }
+
+        return found;
+    }
+    private void showChoice(String url) {
+        final String finalURL= url;
+        final AlertDialog.Builder builder= new AlertDialog.Builder(this);
+        builder.setMessage("This app relies heavily on Skype. Would you like to install it?")
+                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        try {
+                            startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + "com.skype.raider")));
+                        } catch (android.content.ActivityNotFoundException anfe) {
+                            startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=" + "com.skype.raider")));
+                        }
+                    }
+                }).setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                        launchURLFinal(finalURL);
+                    }
+        });
+        AlertDialog finalDialog= builder.create();
+        finalDialog.show();
     }
 }
 
