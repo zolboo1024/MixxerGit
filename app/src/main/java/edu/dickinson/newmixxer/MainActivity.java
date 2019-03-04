@@ -5,11 +5,14 @@ import android.app.ProgressDialog;
 import android.content.ComponentName;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.graphics.drawable.AnimationDrawable;
 import android.net.Uri;
 import android.os.AsyncTask;
+import android.preference.Preference;
+import android.preference.PreferenceManager;
 import android.support.customtabs.CustomTabsClient;
 import android.support.customtabs.CustomTabsIntent;
 import android.support.customtabs.CustomTabsServiceConnection;
@@ -46,7 +49,7 @@ import java.util.List;
  */
 public class MainActivity extends AppCompatActivity {
     AnimationDrawable stickyNotesAnimation;
-
+    private SharedPreferences sharedPreferences;
     ProgressDialog pd; //opening up this Activity might take a while. So this is a dialog that spins while the app is loading
     Button signUp; //sign up Button, same as logIn
     Button logIn;
@@ -131,9 +134,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void launchURL(String url){
-        if(!isPackageInstalled("com.skype.raider", pm)){
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
+        boolean asked = preferences.getBoolean("skypeAsked", false);
+        if(!isPackageInstalled("com.skype.raider", pm) && asked == false){
             showChoice(url);
-            Log.d("SHOWCHOICE", "SHOWCHOICE");
         }
         else {
             launchURLFinal(url);
@@ -175,13 +179,16 @@ public class MainActivity extends AppCompatActivity {
                             startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=" + "com.skype.raider")));
                         }
                     }
-                }).setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                dialog.dismiss();
-                launchURLFinal(finalURL);
-            }
-        });
+                }).setNegativeButton("Don't ask again", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                        launchURLFinal(finalURL);
+                    }
+                });
+        SharedPreferences.Editor editor= PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).edit();
+        editor.putBoolean("skypeAsked", true);
+        editor.apply();
         AlertDialog finalDialog= builder.create();
         finalDialog.show();
     }

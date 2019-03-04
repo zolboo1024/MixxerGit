@@ -97,26 +97,29 @@
 
     <ImageView
         android:id="@+id/speakAndLearn"
-        android:layout_width="344dp"
-        android:layout_height="333dp"
+        android:layout_width="342dp"
+        android:layout_height="323dp"
         android:layout_marginStart="10dp"
         android:layout_marginEnd="10dp"
-        android:layout_marginBottom="65dp"
         android:contentDescription="@string/speak_and_learn"
-        app:layout_constraintBottom_toBottomOf="@+id/logo"
+        app:layout_constraintBottom_toTopOf="@+id/logo"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:srcCompat="@drawable/speak_learn" />
 
     <ImageView
         android:id="@+id/stickyNotes"
         android:layout_width="300dp"
-        android:layout_height="300dp"
-        android:layout_marginBottom="95dp"
+        android:layout_height="303dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
         android:contentDescription="@string/sticky_notes"
-        app:layout_constraintBottom_toBottomOf="@+id/logo"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintBottom_toTopOf="@+id/logo"
+        app:layout_constraintEnd_toEndOf="@+id/speakAndLearn"
+        app:layout_constraintStart_toStartOf="@+id/speakAndLearn"
+        app:layout_constraintTop_toTopOf="@+id/speakAndLearn"
+        app:layout_constraintVertical_bias="0.272" />
 <!--
     app:srcCompat="@drawable/sticky_note_animation"
 -->
@@ -125,18 +128,20 @@
     <TextView
         android:id="@+id/textView"
         android:layout_width="320dp"
-        android:layout_height="wrap_content"
+        android:layout_height="43dp"
         android:layout_marginStart="82dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="82dp"
-        android:layout_marginBottom="700dp"
+        android:layout_marginBottom="8dp"
         android:text="@string/welcome_login"
         android:textAlignment="center"
         android:textColor="@color/colorPrimary"
         android:textSize="32sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/speakAndLearn"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.49"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </android.support.constraint.ConstraintLayout>
