@@ -10,7 +10,6 @@
 
     <Button
         android:id="@+id/logIn"
-        android:layout_width="300dp"
         android:layout_height="40dp"
         android:layout_marginBottom="12dp"
         android:background="@drawable/rounded_button"
@@ -28,7 +27,6 @@
 
     <Button
         android:id="@+id/signUp"
-        android:layout_width="300dp"
         android:layout_height="40dp"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
@@ -47,7 +45,6 @@
 
     <TextView
         android:id="@+id/textView2"
-        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="38dp"
         android:layout_marginEnd="38dp"
@@ -66,7 +63,6 @@
 
     <TextView
         android:id="@+id/textView4"
-        android:layout_width="260dp"
         android:layout_height="70dp"
         android:layout_marginStart="68dp"
         android:layout_marginEnd="70dp"
@@ -85,7 +81,6 @@
 
     <ImageView
         android:id="@+id/logo"
-        android:layout_width="115dp"
         android:layout_height="70dp"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
@@ -97,7 +92,6 @@
 
     <ImageView
         android:id="@+id/speakAndLearn"
-        android:layout_width="342dp"
         android:layout_height="323dp"
         android:layout_marginStart="10dp"
         android:layout_marginEnd="10dp"
@@ -110,7 +104,6 @@
 
     <ImageView
         android:id="@+id/stickyNotes"
-        android:layout_width="300dp"
         android:layout_height="303dp"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
@@ -127,8 +120,7 @@
 
     <TextView
         android:id="@+id/textView"
-        android:layout_width="320dp"
-        android:layout_height="43dp"
+        android:layout_height="0dp"
         android:layout_marginStart="82dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="82dp"
