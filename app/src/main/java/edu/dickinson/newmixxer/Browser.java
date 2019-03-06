@@ -12,6 +12,7 @@ import android.widget.Toast;
  * This is a class that basically implements the 
  * core part of the application: The WebView component.
  */
+
 public class Browser extends AppCompatActivity {
     WebView webView;
     String url;
@@ -30,6 +31,7 @@ public class Browser extends AppCompatActivity {
         url= intent.getStringExtra("url");
         callUrl(url);
     }
+
     // This method basically loads the URL and handles an exception. Once 
     // an exception is thrown it automatically goes back to the main 
     // starting point of the application

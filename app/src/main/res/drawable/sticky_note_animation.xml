@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <!--creates the animation for the login screen-->
+<!--flips between 5 different images that are shown for 2.5 seconds each-->
 
 <animation-list xmlns:android="http://schemas.android.com/apk/res/android"
     android:oneshot="false">
-    <item android:drawable="@drawable/english" android:duration="3000" />
-    <item android:drawable="@drawable/tedesco" android:duration="3000" />
-    <item android:drawable="@drawable/japanese" android:duration="3000" />
-    <item android:drawable="@drawable/chinese" android:duration="3000" />
-    <item android:drawable="@drawable/arabe" android:duration="3000" />
+    <item android:drawable="@drawable/english" android:duration="2500" />
+    <item android:drawable="@drawable/tedesco" android:duration="2500" />
+    <item android:drawable="@drawable/japanese" android:duration="2500" />
+    <item android:drawable="@drawable/chinese" android:duration="2500" />
+    <item android:drawable="@drawable/arabe" android:duration="2500" />
 </animation-list>
 

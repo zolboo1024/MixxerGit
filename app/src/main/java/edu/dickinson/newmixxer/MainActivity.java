@@ -124,7 +124,7 @@ public class MainActivity extends AppCompatActivity {
     }*/
 
     public void launchLogIn(View view){
-        String url = "http://mixxertestdev.dickinson.edu/user/login";
+        String url = "http://www.language-exchanges.org/user/login";
         launchURL(url);
     }
 
@@ -169,7 +169,7 @@ public class MainActivity extends AppCompatActivity {
     private void showChoice(String url) {
         final String finalURL= url;
         final AlertDialog.Builder builder= new AlertDialog.Builder(this);
-        builder.setMessage("This app relies heavily on Skype. Would you like to install it?")
+        builder.setMessage("Mixxer users often use Skype. Would you like to install the app?")
                 .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
