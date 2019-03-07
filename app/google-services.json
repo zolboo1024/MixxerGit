@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "964731694436",
+    "firebase_url": "https://mixxer-f42ec.firebaseio.com",
+    "project_id": "mixxer-f42ec",
+    "storage_bucket": "mixxer-f42ec.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:964731694436:android:2166b6365f53f498",
+        "android_client_info": {
+          "package_name": "edu.dickinson.newmixxer"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "964731694436-hr9v6jg7p8dcismasde2vmo07b7fklkk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA-Fpq2mHIw7CZHDlycpysbQqXXSg35iuI"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

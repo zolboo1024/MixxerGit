@@ -124,8 +124,22 @@ public class MainActivity extends AppCompatActivity {
     }*/
 
     public void launchLogIn(View view){
-        String url = "http://www.language-exchanges.org/user/login";
+        String url = "https://mixxertestdev.dickinson.edu/user/login"; // dev server login url
         launchURL(url);
+
+//        FirebaseUser mUser = FirebaseAuth.getInstance().getCurrentUser();
+//        mUser.getIdToken(true)
+//                .addOnCompleteListener(new OnCompleteListener<GetTokenResult>() {
+//                    public void onComplete(@NonNull Task<GetTokenResult> task) {
+//                        if (task.isSuccessful()) {
+//                            String idToken = task.getResult().getToken();
+//                            // Send token to your backend via HTTPS
+//                            // ...
+//                        } else {
+//                            // Handle error -> task.getException();
+//                        }
+//                    }
+//                });
     }
 
     public void launchSignup(View view){
