@@ -16,6 +16,7 @@
     <string name="sticky_notes">sticky notes</string>
     <string name="the_mixxer">The Mixxer</string>
     <string name="welcome_login">Welcome!</string>
+    <string name="msg_token_fmt">Sample Format</string>
     <string name="sign_up">SIGN UP</string>
     <string name="log_in">LOG IN</string>
 </resources>

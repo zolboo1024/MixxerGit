@@ -13,6 +13,7 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.preference.Preference;
 import android.preference.PreferenceManager;
+import android.support.annotation.NonNull;
 import android.support.customtabs.CustomTabsClient;
 import android.support.customtabs.CustomTabsIntent;
 import android.support.customtabs.CustomTabsServiceConnection;
@@ -24,6 +25,12 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.iid.FirebaseInstanceId;
+import com.google.firebase.iid.InstanceIdResult;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -53,6 +60,8 @@ public class MainActivity extends AppCompatActivity {
     ProgressDialog pd; //opening up this Activity might take a while. So this is a dialog that spins while the app is loading
     Button signUp; //sign up Button, same as logIn
     Button logIn;
+    Button getToken;
+    TextView displayToken;
     PackageManager pm;
     public static final String CUSTOM_TAB_PACKAGE_NAME = "com.android.chrome";
     public static CustomTabsClient mCustomTabsClient;
@@ -147,6 +156,11 @@ public class MainActivity extends AppCompatActivity {
         launchURL(url);
     }
 
+    public void getToken(View view){
+        displayToken = findViewById(R.id.displayToken);
+        displayToken.setText(FirebaseInstanceId.getInstance().getToken());
+        Log.d("Token: ", FirebaseInstanceId.getInstance().getToken());
+    }
     public void launchURL(String url){
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
         boolean asked = preferences.getBoolean("skypeAsked", false);
