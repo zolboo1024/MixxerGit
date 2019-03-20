@@ -54,15 +54,16 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
     private void sendMyNotification(RemoteMessage message) {
 
 //        //On click of notification it redirects to this Activity
-//        Intent intent = new Intent(this, MainActivity.class);
-//        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-//        PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_ONE_SHOT);
+        Intent intent = new Intent(this, MainActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_ONE_SHOT);
         Uri soundUri= RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
 
         NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(this)
                 .setSmallIcon(R.mipmap.ic_launcher)
                 .setContentTitle(message.getNotification().getTitle())
                 .setContentText(message.getNotification().getBody())
+                .setContentIntent(pendingIntent)
                 .setAutoCancel(true)
                 .setSound(soundUri);
         notificationBuilder.setPriority(Notification.PRIORITY_MAX);
@@ -72,13 +73,13 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         notificationManager.notify(0, notificationBuilder.build());
     }
 
-    public NotificationCompat.Builder getChannel1Notification(String title, String message) {
-        return new NotificationCompat.Builder(getApplicationContext(), CHANNEL_1_ID);
-    }
-
-    public NotificationCompat.Builder getChannel2Notification(String title, String message) {
-
-    }
+//    public NotificationCompat.Builder getChannel1Notification(String title, String message) {
+//        return new NotificationCompat.Builder(getApplicationContext(), CHANNEL_1_ID);
+//    }
+//
+//    public NotificationCompat.Builder getChannel2Notification(String title, String message) {
+//
+//    }
 
     private void createNotificationChannel() {
         // Create the NotificationChannel, but only on API 26+ because

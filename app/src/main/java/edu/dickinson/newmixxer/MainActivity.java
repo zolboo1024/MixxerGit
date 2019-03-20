@@ -133,9 +133,9 @@ public class MainActivity extends AppCompatActivity {
     }*/
 
     public void launchLogIn(View view){
-        String url = "https://mixxertestdev.dickinson.edu/user/login"; // dev server login url
-        launchURL(url);
-
+        String url = "https://mixxertestdev.dickinson.edu/user/login?token="+getToken(); // dev server login url
+        //launchURL(url);
+        Log.d("Updated URL: ", url);
 //        FirebaseUser mUser = FirebaseAuth.getInstance().getCurrentUser();
 //        mUser.getIdToken(true)
 //                .addOnCompleteListener(new OnCompleteListener<GetTokenResult>() {
@@ -160,6 +160,10 @@ public class MainActivity extends AppCompatActivity {
         displayToken = findViewById(R.id.displayToken);
         displayToken.setText(FirebaseInstanceId.getInstance().getToken());
         Log.d("Token: ", FirebaseInstanceId.getInstance().getToken());
+    }
+
+    public String getToken(){
+        return FirebaseInstanceId.getInstance().getToken();
     }
     public void launchURL(String url){
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
