@@ -77,7 +77,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
     }
 
     public NotificationCompat.Builder getChannel2Notification(String title, String message) {
-
+        return new NotificationCompat.Builder(getApplicationContext(), CHANNEL_2_ID);
     }
 
     private void createNotificationChannel() {
