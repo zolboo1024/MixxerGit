@@ -35,6 +35,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         if (message.getData().size() > 0) {
             Log.d("FireBase message", "Message data payload: " + message.getData());
 
+
         }
         if (message.getNotification() != null) {
             Log.d("Body Notif", "Message Notification Body: " + message.getNotification().getBody());
