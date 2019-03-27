@@ -133,8 +133,8 @@ public class MainActivity extends AppCompatActivity {
     }*/
 
     public void launchLogIn(View view){
-        String url = "https://mixxertestdev.dickinson.edu/user/login?token="+getToken(); // dev server login url
-        //launchURL(url);
+        String url = "https://www.language-exchanges.org/user/login?token="+getToken(); // dev server login url
+        launchURL(url);
         Log.d("Updated URL: ", url);
 //        FirebaseUser mUser = FirebaseAuth.getInstance().getCurrentUser();
 //        mUser.getIdToken(true)
@@ -156,11 +156,11 @@ public class MainActivity extends AppCompatActivity {
         launchURL(url);
     }
 
-    public void getToken(View view){
+    /*public void getToken(View view){
         displayToken = findViewById(R.id.displayToken);
         displayToken.setText(FirebaseInstanceId.getInstance().getToken());
         Log.d("Token: ", FirebaseInstanceId.getInstance().getToken());
-    }
+    }*/
 
     public String getToken(){
         return FirebaseInstanceId.getInstance().getToken();
