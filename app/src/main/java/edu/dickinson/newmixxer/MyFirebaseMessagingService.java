@@ -53,33 +53,27 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
     private void sendMyNotification(RemoteMessage message) {
 
-//        //On click of notification it redirects to this Activity
+        //On click of notification it redirects to this Activity
         Intent intent = new Intent(this, MainActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_ONE_SHOT);
         Uri soundUri= RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
 
-        NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(this)
-                .setSmallIcon(R.mipmap.ic_launcher)
-                .setContentTitle(message.getNotification().getTitle())
-                .setContentText(message.getNotification().getBody())
-                .setContentIntent(pendingIntent)
-                .setAutoCancel(true)
-                .setSound(soundUri);
-        notificationBuilder.setPriority(Notification.PRIORITY_MAX);
+        NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(this, CHANNEL_1_ID)
+            .setSmallIcon(R.drawable.notification_icon_mixxer)
+//            .setContentTitle(message.getNotification().getTitle())
+            .setContentTitle("The Mixxer")
+//            .setContentText(message.getNotification().getBody())
+            .setContentText("You have a new message")
+            .setContentIntent(pendingIntent)
+            .setAutoCancel(true)
+            .setSound(soundUri)
+            .setPriority(NotificationCompat.PRIORITY_DEFAULT);
         NotificationManager notificationManager =
                 (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
         createNotificationChannel();
         notificationManager.notify(0, notificationBuilder.build());
     }
-
-//    public NotificationCompat.Builder getChannel1Notification(String title, String message) {
-//        return new NotificationCompat.Builder(getApplicationContext(), CHANNEL_1_ID);
-//    }
-//
-//    public NotificationCompat.Builder getChannel2Notification(String title, String message) {
-//
-//    }
 
     private void createNotificationChannel() {
         // Create the NotificationChannel, but only on API 26+ because
@@ -100,16 +94,14 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
                     );
             other.setDescription("You just got sent another type of notification");
 
-//      Olivia commented this out: trying to create multiple channels for different types of notifications
-
 //            CharSequence name = "FireBase Notification";
 //            String description = "whatever";
 //            int importance = NotificationManager.IMPORTANCE_DEFAULT;
 //            NotificationChannel channel = new NotificationChannel("Typical ID", name, importance);
 //            channel.setDescription(description);
 
-            // Register the channel with the system; you can't change the importance
-            // or other notification behaviors after this
+//            Register the channel with the system; you can't change the importance
+//            or other notification behaviors after this
 
             NotificationManager notificationManager = getSystemService(NotificationManager.class);
             notificationManager.createNotificationChannel(messages);
