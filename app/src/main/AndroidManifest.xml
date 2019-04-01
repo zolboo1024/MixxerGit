@@ -2,7 +2,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="edu.dickinson.newmixxer">
     public class FirebaseMessagingService extends EnhancedIntentService
-
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
@@ -12,16 +11,16 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity"
-                  android:screenOrientation="portrait">
-
+        <activity
+            android:name=".MainActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Browser"></activity>
+        <activity android:name=".Browser" />
 
         <service
             android:name=".MyFirebaseMessagingService"
@@ -31,18 +30,22 @@
             </intent-filter>
         </service>
 
-        <!--Theoretically don't need this? class is deprecated-->
-        <!--<service-->
-            <!--android:name=".MyFirebaseInstanceIDService"-->
-            <!--android:exported="true">-->
-            <!--<intent-filter>-->
-                <!--<action android:name="com.google.firebase.INSTANCE_ID_EVENT" />-->
-            <!--</intent-filter>-->
-        <!--</service>-->
+        <!-- Theoretically don't need this? class is deprecated -->
+        <!-- <service -->
+        <!-- android:name=".MyFirebaseInstanceIDService" -->
+        <!-- android:exported="true"> -->
+        <!-- <intent-filter> -->
+        <!-- <action android:name="com.google.firebase.INSTANCE_ID_EVENT" /> -->
+        <!-- </intent-filter> -->
+        <!-- </service> -->
 
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_channel_id"
+            android:value="0" />
+        <activity android:name=".InboxFromNotif"></activity>
     </application>
 
 </manifest>

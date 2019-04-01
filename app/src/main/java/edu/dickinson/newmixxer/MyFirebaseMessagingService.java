@@ -19,7 +19,7 @@ import edu.dickinson.newmixxer.MainActivity;
 import edu.dickinson.newmixxer.R;
 
 public class MyFirebaseMessagingService extends FirebaseMessagingService {
-
+    public static final String SERVICE_LOGIN_INTENT = "loginIntent";
     public static final String CHANNEL_1_ID = "private message notifications";
     public static final String CHANNEL_2_ID = "other notifications";
 
@@ -55,11 +55,11 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
     private void sendMyNotification(RemoteMessage message) {
 
 //        //On click of notification it redirects to this Activity
-        Intent intent = new Intent(this, MainActivity.class);
+        Intent intent = new Intent(this, InboxFromNotif.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        intent.putExtra(SERVICE_LOGIN_INTENT, "ToInbox");
         PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_ONE_SHOT);
         Uri soundUri= RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
-
         NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(this)
                 .setSmallIcon(R.mipmap.ic_launcher)
                 .setContentTitle(message.getNotification().getTitle())
@@ -67,7 +67,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
                 .setContentIntent(pendingIntent)
                 .setAutoCancel(true)
                 .setSound(soundUri);
-        notificationBuilder.setPriority(Notification.PRIORITY_MAX);
+        notificationBuilder.setPriority(Notification.PRIORITY_MAX);  //try spitting everything out here. 
         NotificationManager notificationManager =
                 (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
         createNotificationChannel();

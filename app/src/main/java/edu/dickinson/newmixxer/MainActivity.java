@@ -124,6 +124,19 @@ public class MainActivity extends AppCompatActivity {
             }
         };
         boolean ok = CustomTabsClient.bindCustomTabsService(this, CUSTOM_TAB_PACKAGE_NAME, connection);
+        Intent intent = getIntent();
+        if(intent != null && intent.getExtras()!=null){
+            Log.d("Extras", intent.getExtras().toString());
+        }
+//        if(intent != null && intent.getStringExtra(MyFirebaseMessagingService.SERVICE_LOGIN_INTENT)!=null){
+//            Log.d("FromService", intent.getStringExtra(MyFirebaseMessagingService.SERVICE_LOGIN_INTENT));
+//        }
+        else if(intent != null) {
+
+        }
+        if(intent.getExtras() != null){
+            launchURLFinal("https://www.language-exchanges.org/private_messages");
+        }
     }
 
     /*@Override
@@ -133,8 +146,8 @@ public class MainActivity extends AppCompatActivity {
     }*/
 
     public void launchLogIn(View view){
-        String url = "https://mixxertestdev.dickinson.edu/user/login?token="+getToken(); // dev server login url
-        //launchURL(url);
+        String url = "https://www.language-exchanges.org/user/login?token="+getToken(); // dev server login url
+        launchURL(url);
         Log.d("Updated URL: ", url);
 //        FirebaseUser mUser = FirebaseAuth.getInstance().getCurrentUser();
 //        mUser.getIdToken(true)
