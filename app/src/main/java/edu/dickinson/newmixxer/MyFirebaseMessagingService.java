@@ -25,6 +25,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
     @Override
     public void onCreate() {
+        Log.d("FBSErvice", "FBMessaging service instantiated. ");
         super.onCreate();
     }
 
@@ -55,32 +56,36 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
     private void sendMyNotification(RemoteMessage message) {
 
 //        //On click of notification it redirects to this Activity
+        Log.d("MessageFromFB", "collapseKey: " +message.getCollapseKey());
+        Log.d("MessageFromFB", "from: "+message.getFrom());
+        Log.d("MessageFromFB", "messageId: "+message.getMessageId());
+        Log.d("MessageFromFB", "messageType: "+message.getMessageType());
+        Log.d("MessageFromFB", "to: "+message.getTo());
+        Log.d("MessageFromFB", "getNotification.toString(): "+message.getNotification().toString());
+        Log.d("MessageFromFB", "getData.toString(): "+message.getData().toString());
+        Log.d("MessageFromFB", "getOriginalPriority: "+String.valueOf(message.getOriginalPriority()));
+        Log.d("MessageFromFB", "getPriority: "+String.valueOf(message.getPriority()));
+        Log.d("MessageFromFB", "getTtl: "+String.valueOf(message.getTtl()));
         Intent intent = new Intent(this, InboxFromNotif.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         intent.putExtra(SERVICE_LOGIN_INTENT, "ToInbox");
         PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_ONE_SHOT);
         Uri soundUri= RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
-        NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(this)
-                .setSmallIcon(R.mipmap.ic_launcher)
-                .setContentTitle(message.getNotification().getTitle())
-                .setContentText(message.getNotification().getBody())
+        NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(this, CHANNEL_1_ID)
+                .setSmallIcon(R.drawable.notification_icon_mixxer)
+                //.setContentTitle(message.getNotification().getTitle())
+                .setContentTitle("The Mixxer")
+                //.setContentText(message.getNotification().getBody())
+                .setContentText("You have a new message")
                 .setContentIntent(pendingIntent)
                 .setAutoCancel(true)
-                .setSound(soundUri);
-        notificationBuilder.setPriority(Notification.PRIORITY_MAX);  //try spitting everything out here. 
+                .setSound(soundUri)
+                .setPriority(NotificationCompat.PRIORITY_DEFAULT); //try spitting everything out here.
         NotificationManager notificationManager =
                 (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
         createNotificationChannel();
         notificationManager.notify(0, notificationBuilder.build());
     }
-
-//    public NotificationCompat.Builder getChannel1Notification(String title, String message) {
-//        return new NotificationCompat.Builder(getApplicationContext(), CHANNEL_1_ID);
-//    }
-//
-//    public NotificationCompat.Builder getChannel2Notification(String title, String message) {
-//
-//    }
 
     private void createNotificationChannel() {
         // Create the NotificationChannel, but only on API 26+ because
