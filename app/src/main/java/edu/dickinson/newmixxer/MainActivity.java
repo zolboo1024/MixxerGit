@@ -169,15 +169,16 @@ public class MainActivity extends AppCompatActivity {
         launchURL(url);
     }
 
-    /*public void getToken(View view){
-        displayToken = findViewById(R.id.displayToken);
-        displayToken.setText(FirebaseInstanceId.getInstance().getToken());
-        Log.d("Token: ", FirebaseInstanceId.getInstance().getToken());
-    }*/
-
     public String getToken(){
         return FirebaseInstanceId.getInstance().getToken();
     }
+
+    public void getToken(View view){
+        displayToken = findViewById(R.id.displayToken);
+        displayToken.setText(FirebaseInstanceId.getInstance().getToken());
+        Log.d("Token: ", FirebaseInstanceId.getInstance().getToken());
+    }
+
     public void launchURL(String url){
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
         boolean asked = preferences.getBoolean("skypeAsked", false);
