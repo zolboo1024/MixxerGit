@@ -52,8 +52,8 @@ import java.util.List;
  * Created by Zolboo Erdenebaatar 11/19/2018
  * The entry point of the application. This is the screen that
  * has the 2 buttons when the app is opened up.
- *
  */
+
 public class MainActivity extends AppCompatActivity {
     AnimationDrawable stickyNotesAnimation;
     private SharedPreferences sharedPreferences;
@@ -67,7 +67,6 @@ public class MainActivity extends AppCompatActivity {
     public static CustomTabsClient mCustomTabsClient;
     public static CustomTabsSession mCustomTabsSession;
 
-    //public static String joReturn;    //was useful when we used the method "yourDataTask". No longer useful
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -135,7 +134,7 @@ public class MainActivity extends AppCompatActivity {
     public void launchLogIn(View view){
         String url = "https://www.language-exchanges.org/user/login?token="+getToken(); // dev server login url
         launchURL(url);
-        Log.d("Updated URL: ", url);
+
 //        FirebaseUser mUser = FirebaseAuth.getInstance().getCurrentUser();
 //        mUser.getIdToken(true)
 //                .addOnCompleteListener(new OnCompleteListener<GetTokenResult>() {
@@ -156,14 +155,14 @@ public class MainActivity extends AppCompatActivity {
         launchURL(url);
     }
 
-    /*public void getToken(View view){
+    public String getToken() {
+        return FirebaseInstanceId.getInstance().getToken();
+    }
+
+    public void getToken(View view){
         displayToken = findViewById(R.id.displayToken);
         displayToken.setText(FirebaseInstanceId.getInstance().getToken());
         Log.d("Token: ", FirebaseInstanceId.getInstance().getToken());
-    }*/
-
-    public String getToken(){
-        return FirebaseInstanceId.getInstance().getToken();
     }
     public void launchURL(String url){
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
