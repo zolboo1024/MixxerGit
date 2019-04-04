@@ -6,6 +6,7 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.Build;
@@ -19,13 +20,14 @@ import edu.dickinson.newmixxer.MainActivity;
 import edu.dickinson.newmixxer.R;
 
 public class MyFirebaseMessagingService extends FirebaseMessagingService {
+
     public static final String SERVICE_LOGIN_INTENT = "loginIntent";
     public static final String CHANNEL_1_ID = "private message notifications";
     public static final String CHANNEL_2_ID = "other notifications";
 
     @Override
     public void onCreate() {
-        Log.d("FBSErvice", "FBMessaging service instantiated. ");
+        Log.d("FBService", "FBMessaging service instantiated. ");
         super.onCreate();
     }
 
@@ -37,6 +39,12 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
     @Override
     public void onMessageReceived(RemoteMessage message) {
+
+        super.onMessageReceived(message);
+        RemoteMessage.Notification notification = message.getNotification();
+
+        sendMyNotification(notification);
+
         //sendMyNotification(message.getNotification().getBody());
         Log.d("FireBase message", "From: " + message.getFrom());
 
@@ -49,25 +57,26 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         if (message.getNotification() != null) {
             Log.d("Body Notif", "Message Notification Body: " + message.getNotification().getBody());
             Log.d("Message Received", "CALL SEND NOTIF");
-            sendMyNotification(message);
+            sendMyNotification(notification);
         }
     }
 
-    private void sendMyNotification(RemoteMessage message) {
+    private void sendMyNotification(RemoteMessage.Notification notification) {
 
-//        //On click of notification it redirects to this Activity
-        Log.d("MessageFromFB", "collapseKey: " +message.getCollapseKey());
-        Log.d("MessageFromFB", "from: "+message.getFrom());
-        Log.d("MessageFromFB", "messageId: "+message.getMessageId());
-        Log.d("MessageFromFB", "messageType: "+message.getMessageType());
-        Log.d("MessageFromFB", "to: "+message.getTo());
-        Log.d("MessageFromFB", "getNotification.toString(): "+message.getNotification().toString());
-        Log.d("MessageFromFB", "getData.toString(): "+message.getData().toString());
-        Log.d("MessageFromFB", "getOriginalPriority: "+String.valueOf(message.getOriginalPriority()));
-        Log.d("MessageFromFB", "getPriority: "+String.valueOf(message.getPriority()));
-        Log.d("MessageFromFB", "getTtl: "+String.valueOf(message.getTtl()));
+//      On click of notification it redirects to this Activity
+//        Log.d("MessageFromFB", "collapseKey: " +notification.getCollapseKey());
+//        Log.d("MessageFromFB", "from: "+notification.getFrom());
+//        Log.d("MessageFromFB", "messageId: "+notification.getMessageId());
+//        Log.d("MessageFromFB", "messageType: "+notification.getMessageType());
+//        Log.d("MessageFromFB", "to: "+notification.getTo());
+//        Log.d("MessageFromFB", "getNotification.toString(): "+notification.getNotification().toString());
+//        Log.d("MessageFromFB", "getData.toString(): "+notification.getData().toString());
+//        Log.d("MessageFromFB", "getOriginalPriority: "+String.valueOf(notification.getOriginalPriority()));
+//        Log.d("MessageFromFB", "getPriority: "+String.valueOf(notification.getPriority()));
+//        Log.d("MessageFromFB", "getTtl: "+String.valueOf(notification.getTtl()));
+
         Intent intent = new Intent(this, InboxFromNotif.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         intent.putExtra(SERVICE_LOGIN_INTENT, "ToInbox");
         PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_ONE_SHOT);
         Uri soundUri= RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
@@ -80,9 +89,10 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
                 .setContentIntent(pendingIntent)
                 .setAutoCancel(true)
                 .setSound(soundUri)
-                .setPriority(NotificationCompat.PRIORITY_DEFAULT); //try spitting everything out here.
-        NotificationManager notificationManager =
-                (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+                .setLights(Color.CYAN, 1000, 1000)
+                .setDefaults(Notification.DEFAULT_VIBRATE)
+                .setPriority(NotificationCompat.PRIORITY_MAX); //try spitting everything out here.
+
         createNotificationChannel();
         notificationManager.notify(0, notificationBuilder.build());
     }
@@ -90,6 +100,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
     private void createNotificationChannel() {
         // Create the NotificationChannel, but only on API 26+ because
         // the NotificationChannel class is new and not in the support library
+
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
 
             NotificationChannel messages = new NotificationChannel(
@@ -98,6 +109,9 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
                     NotificationManager.IMPORTANCE_HIGH
             );
             messages.setDescription("You just got sent a private message notification");
+            messages.enableLights(true);
+            messages.setLightColor(Color.CYAN);
+            messages.enableVibration(true);
 
             NotificationChannel other = new NotificationChannel(
                     CHANNEL_2_ID,
@@ -105,17 +119,6 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
                     NotificationManager.IMPORTANCE_DEFAULT
                     );
             other.setDescription("You just got sent another type of notification");
-
-//      Olivia commented this out: trying to create multiple channels for different types of notifications
-
-//            CharSequence name = "FireBase Notification";
-//            String description = "whatever";
-//            int importance = NotificationManager.IMPORTANCE_DEFAULT;
-//            NotificationChannel channel = new NotificationChannel("Typical ID", name, importance);
-//            channel.setDescription(description);
-
-            // Register the channel with the system; you can't change the importance
-            // or other notification behaviors after this
 
             NotificationManager notificationManager = getSystemService(NotificationManager.class);
             notificationManager.createNotificationChannel(messages);
