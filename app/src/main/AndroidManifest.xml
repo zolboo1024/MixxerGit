@@ -19,6 +19,10 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+            <intent-filter>
+                <action android:name="OPEN_ACTIVITY_1" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
         </activity>
 
         <activity
@@ -31,6 +35,10 @@
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
+            <intent-filter>
+                <action android:name="OPEN_ACTIVITY_1" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
         </service>
 
         <meta-data
@@ -41,11 +49,20 @@
             android:name="com.google.firebase.messaging.default_notification_channel_id"
             android:value="0" />
 
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_icon"
+            android:resource="@mipmap/mixxer_launcher" />
+        <!--<meta-data android:name="com.google.firebase.messaging.default_notification_color"-->
+            <!--android:resource="@color/google_blue" />-->
+
         <activity
             android:name=".InboxFromNotif" >
             <!--android:taskAffinity=""-->
             <!--android:excludeFromRecents="true"-->
-
+            <intent-filter>
+                <action android:name="OPEN_ACTIVITY_1" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
         </activity>
     </application>
 
