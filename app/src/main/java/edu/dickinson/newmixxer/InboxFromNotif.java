@@ -16,15 +16,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class InboxFromNotif extends AppCompatActivity {
+
     public static final String CUSTOM_TAB_PACKAGE_NAME = "com.android.chrome";
     public static CustomTabsClient mCustomTabsClient;
     public static CustomTabsSession mCustomTabsSession;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         Log.d("Notif", "Inbox notif opened");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_inbox_from_notif);
         CustomTabsServiceConnection connection = new CustomTabsServiceConnection() {
+
             @Override
             public void onCustomTabsServiceConnected(ComponentName name, CustomTabsClient client) {
                 mCustomTabsClient = client;
@@ -43,6 +47,7 @@ public class InboxFromNotif extends AppCompatActivity {
                 mCustomTabsClient = null;
             }
         };
+
         boolean ok = CustomTabsClient.bindCustomTabsService(this, CUSTOM_TAB_PACKAGE_NAME, connection);
         CustomTabsIntent.Builder builder = new CustomTabsIntent.Builder();
         builder.setToolbarColor(getResources().getColor(R.color.colorPrimary));

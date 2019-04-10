@@ -153,14 +153,14 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <!--<Button
-        android:id="@+id/getToken"
-        android:layout_width="100dp"
-        android:layout_height="48dp"
-        android:onClick="getToken"
-        android:text="getToken"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+    <!--<Button-->
+        <!--android:id="@+id/getToken"-->
+        <!--android:layout_width="100dp"-->
+        <!--android:layout_height="48dp"-->
+        <!--android:onClick="getToken"-->
+        <!--android:text="getToken"-->
+        <!--app:layout_constraintBottom_toBottomOf="parent"-->
+        <!--app:layout_constraintStart_toStartOf="parent" />-->
 
     <EditText
         android:id="@+id/displayToken"
