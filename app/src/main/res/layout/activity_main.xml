@@ -174,16 +174,9 @@
         <!--android:onClick="getToken"-->
         <!--android:text="getToken"-->
         <!--app:layout_constraintBottom_toBottomOf="parent"-->
-        <!--app:layout_constraintStart_toStartOf="parent" />-->
+        <!--app:layout_constraintStart_toStartOf="parent" />--><![CDATA[
 
-    <EditText
-        android:id="@+id/displayToken"
-        android:layout_width="300dp"
-        android:layout_height="45dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="Name"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />-->
+    -->
 
+]]>
 </android.support.constraint.ConstraintLayout>

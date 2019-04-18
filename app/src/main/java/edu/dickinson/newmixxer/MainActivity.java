@@ -117,27 +117,14 @@ public class MainActivity extends AppCompatActivity {
 
         boolean ok = CustomTabsClient.bindCustomTabsService(this, CUSTOM_TAB_PACKAGE_NAME, connection);
         Intent intent = getIntent();
-        if(intent.getExtras() != null){
-            launchURLFinal("https://www.language-exchanges.org/private_messages");
-        }
+//        if(intent.getExtras() != null){
+//            launchURLFinal("https://www.language-exchanges.org/private_messages");
+//        }
     }
 
     public void launchLogIn(View view){
         String url = "https://www.language-exchanges.org/user/login?token="+getToken(); // dev server login url
         launchURL(url);
-//        FirebaseUser mUser = FirebaseAuth.getInstance().getCurrentUser();
-//        mUser.getIdToken(true)
-//                .addOnCompleteListener(new OnCompleteListener<GetTokenResult>() {
-//                    public void onComplete(@NonNull Task<GetTokenResult> task) {
-//                        if (task.isSuccessful()) {
-//                            String idToken = task.getResult().getToken();
-//                            // Send token to your backend via HTTPS
-//                            // ...
-//                        } else {
-//                            // Handle error -> task.getException();
-//                        }
-//                    }
-//                });
     }
 
     public void launchSignup(View view){

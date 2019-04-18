@@ -32,17 +32,17 @@ public class Settings extends MainActivity {
 
     public void launchAbout(View view) {
         url += "about-mixxer";
-        launchURL(url);
+        launchURLFinal(url);
     }
 
     public void launchPrivacyPolicy(View view) {
         url += "privacy-policy";
-        launchURL(url);
+        launchURLFinal(url);
     }
 
     public void launchFAQ (View view) {
         url += "faq";
-        launchURL(url);
+        launchURLFinal(url);
     }
 
     public void backToMainActivity () {
