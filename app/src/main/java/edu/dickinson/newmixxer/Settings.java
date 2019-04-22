@@ -31,7 +31,7 @@ public class Settings extends MainActivity {
         privacy_policy.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                goToPrivacyPolicy();
+                launchPrivacyPolicy();
             }
         });
 
@@ -50,24 +50,24 @@ public class Settings extends MainActivity {
     }
 
     public void launchAbout(View view) {
-        url += "about-mixxer";
-        launchURLFinal(url);
+        launchURLFinal(url+"about-mixxer");
     }
 
     public void launchFAQ (View view) {
-        url += "faq";
-        launchURLFinal(url);
+        launchURLFinal(url+"faq");
     }
 
 //    public void goToFAQ() {
 //        Intent intent = new Intent(this, FAQ.class);
 //        startActivity(intent);
 //    }
-
-    public void goToPrivacyPolicy () {
-        Intent intent = new Intent(this, PrivacyPolicy.class);
-        startActivity(intent);
+    public void launchPrivacyPolicy() {
+        launchURLFinal(url+"privacy-policy");
     }
+//    public void goToPrivacyPolicy () {
+//        Intent intent = new Intent(this, PrivacyPolicy.class);
+//        startActivity(intent);
+//    }
 
     public void backToMainActivity () {
         Intent intent = new Intent(this, MainActivity.class);
