@@ -130,10 +130,6 @@
         app:layout_constraintEnd_toEndOf="@+id/speakAndLearn"
         app:layout_constraintStart_toStartOf="@+id/speakAndLearn"
         app:layout_constraintTop_toTopOf="@+id/speakAndLearn" />
-    <!--
-    app:srcCompat="@drawable/sticky_note_animation"
--->
-
 
     <TextView
         android:id="@+id/welcome"
@@ -159,6 +155,7 @@
         android:layout_height="30dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
+        android:adjustViewBounds="false"
         android:background="@android:drawable/list_selector_background"
         android:contentDescription="@string/settings_button"
         android:scaleType="fitStart"
@@ -167,16 +164,4 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/settings_icon_accentblue" />
 
-    <!--<Button-->
-        <!--android:id="@+id/getToken"-->
-        <!--android:layout_width="100dp"-->
-        <!--android:layout_height="48dp"-->
-        <!--android:onClick="getToken"-->
-        <!--android:text="getToken"-->
-        <!--app:layout_constraintBottom_toBottomOf="parent"-->
-        <!--app:layout_constraintStart_toStartOf="parent" />--><![CDATA[
-
-    -->
-
-]]>
 </android.support.constraint.ConstraintLayout>
