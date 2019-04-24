@@ -26,22 +26,6 @@ public class Settings extends MainActivity {
                 backToMainActivity();
             }
         });
-
-        privacy_policy = findViewById(R.id.privacy_policy);
-        privacy_policy.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                goToPrivacyPolicy();
-            }
-        });
-
-//        faq = findViewById(R.id.faq);
-//        faq.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                goToFAQ();
-//            }
-//        });
     }
 
     @Override
@@ -57,14 +41,8 @@ public class Settings extends MainActivity {
         launchURLFinal(url+"faq");
     }
 
-//    public void goToFAQ() {
-//        Intent intent = new Intent(this, FAQ.class);
-//        startActivity(intent);
-//    }
-
-    public void goToPrivacyPolicy () {
-        Intent intent = new Intent(this, PrivacyPolicy.class);
-        startActivity(intent);
+    public void launchPrivacyPolicy(View view) {
+        launchURLFinal(url+"privacy-policy");
     }
 
     public void backToMainActivity () {
