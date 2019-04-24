@@ -64,17 +64,6 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
     private void sendMyNotification(RemoteMessage.Notification notification) {
 
 //      On click of notification it redirects to this Activity
-//        Log.d("MessageFromFB", "collapseKey: " +notification.getCollapseKey());
-//        Log.d("MessageFromFB", "from: "+notification.getFrom());
-//        Log.d("MessageFromFB", "messageId: "+notification.getMessageId());
-//        Log.d("MessageFromFB", "messageType: "+notification.getMessageType());
-//        Log.d("MessageFromFB", "to: "+notification.getTo());
-//        Log.d("MessageFromFB", "getNotification.toString(): "+notification.getNotification().toString());
-//        Log.d("MessageFromFB", "getData.toString(): "+notification.getData().toString());
-//        Log.d("MessageFromFB", "getOriginalPriority: "+String.valueOf(notification.getOriginalPriority()));
-//        Log.d("MessageFromFB", "getPriority: "+String.valueOf(notification.getPriority()));
-//        Log.d("MessageFromFB", "getTtl: "+String.valueOf(notification.getTtl()));
-
         Intent intent = new Intent(this, InboxFromNotif.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         intent.putExtra(SERVICE_LOGIN_INTENT, "ToInbox");

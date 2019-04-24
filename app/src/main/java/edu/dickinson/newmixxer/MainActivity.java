@@ -157,6 +157,7 @@ public class MainActivity extends AppCompatActivity {
         builder.setToolbarColor(Color.parseColor("#263038"));
         CustomTabsIntent customTabsIntent = builder.build();
         customTabsIntent.intent.setPackage(CUSTOM_TAB_PACKAGE_NAME);
+        Log.d("URLLaunched: ", url);
         customTabsIntent.launchUrl(this, Uri.parse(url));
     }
 
