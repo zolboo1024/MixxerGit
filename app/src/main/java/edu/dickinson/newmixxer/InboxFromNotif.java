@@ -162,7 +162,6 @@ public class InboxFromNotif extends AppCompatActivity {
     private void showChoice(String url) {
         final String finalURL= url;
         final AlertDialog.Builder builder= new AlertDialog.Builder(this);
-
         builder.setMessage("Mixxer users often use Skype. Would you like to install the app?")
                 .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     @Override

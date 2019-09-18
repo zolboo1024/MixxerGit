@@ -10,10 +10,7 @@ import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.graphics.drawable.AnimationDrawable;
 import android.net.Uri;
-import android.os.AsyncTask;
-import android.preference.Preference;
 import android.preference.PreferenceManager;
-import android.support.annotation.NonNull;
 import android.support.customtabs.CustomTabsClient;
 import android.support.customtabs.CustomTabsIntent;
 import android.support.customtabs.CustomTabsServiceConnection;
@@ -25,38 +22,18 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.TextView;
-import android.widget.Toast;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.iid.FirebaseInstanceId;
-import com.google.firebase.iid.InstanceIdResult;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
 import java.net.URL;
-import java.net.URLConnection;
-import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by Zolboo Erdenebaatar and Olivia Voler.
- * The entry point of the application.
- * Has buttons to log in, sign up, and take the user to settings.
- */
+public class ExchangeRequestFromNotif extends AppCompatActivity {
 
-public class MainActivity extends AppCompatActivity {
-
+    public static final String CUSTOM_TAB_PACKAGE_NAME = "com.android.chrome";
+    public static CustomTabsClient mCustomTabsClient;
+    public static CustomTabsSession mCustomTabsSession;
     AnimationDrawable stickyNotesAnimation;
     private SharedPreferences sharedPreferences;
     ProgressDialog pd; //opening up this Activity might take a while. So this is a dialog that spins while the app is loading
@@ -64,15 +41,10 @@ public class MainActivity extends AppCompatActivity {
     Button logIn;
     ImageButton settingsButton;
     PackageManager pm;
-
-    public static final String CUSTOM_TAB_PACKAGE_NAME = "com.android.chrome";
-    public static CustomTabsClient mCustomTabsClient;
-    public static CustomTabsSession mCustomTabsSession;
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
+        Log.d("Notif", "Inbox notif opened");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
@@ -114,18 +86,32 @@ public class MainActivity extends AppCompatActivity {
                 mCustomTabsClient = null;
             }
         };
-
         boolean ok = CustomTabsClient.bindCustomTabsService(this, CUSTOM_TAB_PACKAGE_NAME, connection);
-        Intent intent = getIntent();
-//        if(intent.getExtras() != null){
-//            launchURLFinal("https://www.language-exchanges.org/private_messages");
-//        }
+        CustomTabsIntent.Builder builder = new CustomTabsIntent.Builder();
+        builder.setToolbarColor(getResources().getColor(R.color.colorPrimary));
+        //builder.setShowTitle(true);
+        builder.setToolbarColor(Color.parseColor("#263038"));
+        CustomTabsIntent customTabsIntent = builder.build();
+        customTabsIntent.intent.setPackage(CUSTOM_TAB_PACKAGE_NAME);
+        customTabsIntent.launchUrl(this, Uri.parse("https://www.language-exchanges.org/exchange-requests"));
     }
 
     public void launchLogIn(View view){
-        String url = "https://www.language-exchanges.org/user/login?token="+getToken();
-        Log.d("TOKENID", getToken());// dev server login url
+        String url = "https://www.language-exchanges.org/user/login?token="+getToken(); // dev server login url
         launchURL(url);
+//        FirebaseUser mUser = FirebaseAuth.getInstance().getCurrentUser();
+//        mUser.getIdToken(true)
+//                .addOnCompleteListener(new OnCompleteListener<GetTokenResult>() {
+//                    public void onComplete(@NonNull Task<GetTokenResult> task) {
+//                        if (task.isSuccessful()) {
+//                            String idToken = task.getResult().getToken();
+//                            // Send token to your backend via HTTPS
+//                            // ...
+//                        } else {
+//                            // Handle error -> task.getException();
+//                        }
+//                    }
+//                });
     }
 
     public void launchSignup(View view){
@@ -158,7 +144,6 @@ public class MainActivity extends AppCompatActivity {
         builder.setToolbarColor(Color.parseColor("#263038"));
         CustomTabsIntent customTabsIntent = builder.build();
         customTabsIntent.intent.setPackage(CUSTOM_TAB_PACKAGE_NAME);
-        Log.d("URLLaunched: ", url);
         customTabsIntent.launchUrl(this, Uri.parse(url));
     }
 
@@ -189,12 +174,12 @@ public class MainActivity extends AppCompatActivity {
                         }
                     }
                 }).setNegativeButton("Don't ask again", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.dismiss();
-                        launchURLFinal(finalURL);
-                    }
-                });
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+                launchURLFinal(finalURL);
+            }
+        });
 
         SharedPreferences.Editor editor= PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).edit();
         editor.putBoolean("skypeAsked", true);
@@ -203,5 +188,3 @@ public class MainActivity extends AppCompatActivity {
         finalDialog.show();
     }
 }
-
-
