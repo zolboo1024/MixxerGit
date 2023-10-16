@@ -1,7 +1,7 @@
 package edu.dickinson.newmixxer;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
@@ -24,7 +24,11 @@ public class Browser extends AppCompatActivity {
         webView = findViewById(R.id.webView);
         // Must enable JS and Cache 
         webView.getSettings().setJavaScriptEnabled(true);
-        webView.getSettings().setAppCacheEnabled(true);
+        //Todd commented out below
+        //was getting error error: cannot find symbol
+        //        webView.getSettings().setAppCacheEnabled(true);
+        //                             ^
+        //webView.getSettings().setAppCacheEnabled(true);
         Intent intent= getIntent();
         // Here, we get URL that is passed from the MainActivity 
         // as an extra string from the intent.

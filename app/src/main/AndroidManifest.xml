@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="edu.dickinson.newmixxer">
-    public class FirebaseMessagingService extends EnhancedIntentService
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
@@ -15,7 +14,8 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".MainActivity"
-            android:screenOrientation="portrait">
+            android:screenOrientation="portrait"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -31,7 +31,8 @@
 
         <service
             android:name=".MyFirebaseMessagingService"
-            android:stopWithTask="false">
+            android:stopWithTask="false"
+            android:exported="true">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
@@ -50,21 +51,24 @@
             android:name="com.google.firebase.messaging.default_notification_icon"
             android:resource="@drawable/notification_icon_mixxer" />
 
-        <activity android:name=".InboxFromNotif">
+        <activity android:name=".InboxFromNotif"
+            android:exported="true">
             <intent-filter>
                 <action android:name="OPEN_ACTIVITY_1" />
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:name=".MyFriendsFromNotif">
+        <activity android:name=".MyFriendsFromNotif"
+            android:exported="true">
             <intent-filter>
                 <action android:name="OPEN_ACTIVITY_2" />
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:name=".ExchangeRequestFromNotif">
+        <activity android:name=".ExchangeRequestFromNotif"
+            android:exported="true">
             <intent-filter>
                 <action android:name="OPEN_ACTIVITY_3" />
 
