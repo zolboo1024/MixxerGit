@@ -33,7 +33,7 @@ import java.util.List;
 /**
  * Created by Zolboo Erdenebaatar and Olivia Voler.
  * The entry point of the application.
- * Has buttons to log in, sign up, and take the user to settings.
+ * Has buttons to log in, sign up, and take the user to settings. Test
  */
 
 public class MainActivity extends AppCompatActivity {
