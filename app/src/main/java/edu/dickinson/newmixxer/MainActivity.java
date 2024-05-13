@@ -24,13 +24,16 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 
-import com.google.firebase.iid.FirebaseInstanceId;
+
 
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
+import com.google.firebase.messaging.FirebaseMessaging;
+
 
 /**
+ * import com.google.firebase.id.FirebaseInstanceId;
  * Created by Zolboo Erdenebaatar and Olivia Voler.
  * The entry point of the application.
  * Has buttons to log in, sign up, and take the user to settings. Test
@@ -103,9 +106,12 @@ public class MainActivity extends AppCompatActivity {
 //        }
     }
 
+    FirebaseMessaging messaging = FirebaseMessaging.getInstance();
+
     public void launchLogIn(View view){
-        String url = "https://www.language-exchanges.org/user/login?token="+getToken();
-        Log.d("TOKENID", getToken());// dev server login url
+        String url;
+        url = "https://www.language-exchanges.org/user/login?token="+messaging.getToken();
+        //Log.d("TOKENID", messaging.getToken());// dev server login url
         launchURL(url);
     }
 
@@ -119,9 +125,9 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public String getToken(){
-        return FirebaseInstanceId.getInstance().getToken();
-    }
+    //public String getToken(){
+        //return FirebaseInstanceId.getInstance().getToken();
+    //}
     public void launchURL(String url){
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
         //boolean asked = preferences.getBoolean("skypeAsked", false);

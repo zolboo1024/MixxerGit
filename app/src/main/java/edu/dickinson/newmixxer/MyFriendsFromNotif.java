@@ -23,7 +23,8 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 
-import com.google.firebase.iid.FirebaseInstanceId;
+
+import com.google.firebase.messaging.FirebaseMessaging;
 
 import java.net.URL;
 import java.util.ArrayList;
@@ -96,8 +97,9 @@ public class MyFriendsFromNotif extends AppCompatActivity {
         customTabsIntent.launchUrl(this, Uri.parse("https://www.language-exchanges.org/my_friends"));
     }
 
+    FirebaseMessaging messaging = FirebaseMessaging.getInstance();
     public void launchLogIn(View view){
-        String url = "https://www.language-exchanges.org/user/login?token="+getToken(); // dev server login url
+        String url = "https://www.language-exchanges.org/user/login?token="+messaging.getToken(); // dev server login url
         launchURL(url);
 //        FirebaseUser mUser = FirebaseAuth.getInstance().getCurrentUser();
 //        mUser.getIdToken(true)
@@ -124,9 +126,9 @@ public class MyFriendsFromNotif extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public String getToken(){
-        return FirebaseInstanceId.getInstance().getToken();
-    }
+    //public String getToken(){
+        //return FirebaseInstanceId.getInstance().getToken();
+    //}
     public void launchURL(String url){
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
         boolean asked = preferences.getBoolean("skypeAsked", false);
@@ -180,6 +182,8 @@ public class MyFriendsFromNotif extends AppCompatActivity {
                 launchURLFinal(finalURL);
             }
         });
+
+
 
         SharedPreferences.Editor editor= PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).edit();
         editor.putBoolean("skypeAsked", true);

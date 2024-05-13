@@ -23,7 +23,9 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 
-import com.google.firebase.iid.FirebaseInstanceId;
+
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.messaging.FirebaseMessaging;
 
 import java.net.URL;
 import java.util.ArrayList;
@@ -95,9 +97,9 @@ public class ExchangeRequestFromNotif extends AppCompatActivity {
         customTabsIntent.intent.setPackage(CUSTOM_TAB_PACKAGE_NAME);
         customTabsIntent.launchUrl(this, Uri.parse("https://www.language-exchanges.org/exchange-requests"));
     }
-
+    FirebaseMessaging messaging = FirebaseMessaging.getInstance();
     public void launchLogIn(View view){
-        String url = "https://www.language-exchanges.org/user/login?token="+getToken(); // dev server login url
+        String url = "https://www.language-exchanges.org/user/login?token="+messaging.getToken(); // dev server login url
         launchURL(url);
 //        FirebaseUser mUser = FirebaseAuth.getInstance().getCurrentUser();
 //        mUser.getIdToken(true)
@@ -124,9 +126,13 @@ public class ExchangeRequestFromNotif extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public String getToken(){
-        return FirebaseInstanceId.getInstance().getToken();
-    }
+    //public Task<String> getToken(){
+     //   return FirebaseMessaging.getInstance().getToken();
+    //}
+
+
+
+
     public void launchURL(String url){
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
         boolean asked = preferences.getBoolean("skypeAsked", false);
